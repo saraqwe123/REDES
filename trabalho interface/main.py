@@ -19,6 +19,9 @@ class Interface():
         self.root.geometry("290x300")
         
     def entradas(self):
+        self.label1 = Label(self.root, text = "Endereço IP")
+        self.label1.place(relx = 0.25, rely = 0.1, relwidth = 0.5, relheight = 0.05)
+        
         self.entry1 = Entry(self.root, textvariable = self.textEntry1)
         self.entry1.place(relx = 0.25, rely = 0.1, relwidth = 0.5, relheight = 0.05)
         
