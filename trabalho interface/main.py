@@ -24,7 +24,7 @@ class Interface():
         self.label1.place(relx = 0.25, rely = 0.05, relwidth = 0.5, relheight = 0.05)
         
         self.entry1 = Entry(self.root, textvariable = self.textEntry1)
-        self.entry1.place(relx = 0.25, rely = 0.1, relwidth = 0.5, relheight = 0.05)
+        self.entry1.place(relx = 0.25, rely = 0.1, relwidth = 0.5, relheight = 0.05) 
         
         self.menubutton = Menubutton(self.root, text = "Máscara", relief = "ridge", cursor = "hand1")
         self.menubutton.place(relx = 0.25, rely = 0.25, relwidth = 0.5, relheight = 0.05)
@@ -56,15 +56,30 @@ class Interface():
         select = self.op
         if texto1 != "" and texto2 != "":
             if len(texto1) <= 12 and len(texto2) <= 12 and select != "":
-                root2 = Tk()
-                root2.mainloop()
+                if self.validacao_entradas():
+                    root2 = Tk()
+                    root2.mainloop()
             else:
                 messagebox.showinfo("Erro", "Uma das opções não foi selecionada")
         else:
             messagebox.showinfo("Erro", "Uma das opções está vázia")
+        
+    def validacao_entradas(self):
+        entrada = self.entry1.get()
+        entrada2 = self.entry2.get()
+        i = 0
+        for caractere in entrada:
+            if not caractere.isdigit() and caractere != ".":
+                i += 1
+        if i != 0:
+            messagebox.showinfo("Erro", "Preencha apenas com números e pontos")
 
-    
-    
+        for caractere in entrada2:
+            if not caractere.isdigit():
+                i += 1
+        if i != 0:
+            messagebox.showinfo("Erro", "Preencha apenas com números e pontos")
+             
     def show_message(self, op):
         self.op = op
         messagebox.showinfo("Selecionado", f"Você selecionou: {self.op}")       
@@ -82,7 +97,7 @@ if __name__ == "__main__":
     
 """
 no open new, fazer verificação de:
-- números, ele não poderá funcionar com letras
+- números, ele não poderá funcionar com letras feito e nao testado
 - validação de pontos, ele terá que funcionar 111.111.111.111
 - validação dos números até 255  
 """
